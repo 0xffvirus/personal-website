@@ -29,9 +29,9 @@ The form is a **frontend-only demo**. It does not send or store any information.
 
 Both pages now contain the five projects from Bahaa’s supplied résumé: Fix My Bad Resume, Sanad, Unis Market, Refit: Reset Your Life, and Last Trial. About includes a personal introduction, degree and university, three professional roles, and technical skills. Education dates, spoken-language proficiency, awards/certifications, and the contact phone number are intentionally omitted. The site uses the project destinations embedded in the résumé. The résumé itself is not copied into the public website.
 
-Real screenshots live in `assets/images/projects/`. See [the image guide](assets/images/projects/README.md) for the exact filenames.
+Real screenshots live in `assets/images/projects/`. The pages load responsive WebP variants; original PNGs are retained only as sources. See [the image guide](assets/images/projects/README.md) for filenames and regeneration instructions.
 
-To replace a cover, put the new image in that folder and update the matching `src` in **both** `index.html` (Arabic, the default) and `en.html` (English). Update the alt text to describe the image. Use a 4:3 cover, ideally 800×600 or 1600×1200; the card layout preserves this ratio.
+To replace a cover, replace its source PNG and regenerate the WebP variants with `scripts/optimize_screenshots.py` (Python with Pillow required only for regeneration). Update both locales' alt text, and update `src`/`srcset` if changing filenames. Use a source at least 1600px wide; the card displays a 4:3 crop.
 
 Project facts, links, and translations are kept in the HTML files. Keep both languages synchronized when editing. Shared styles are in `css/styles.css`; interactions are in `js/script.js`.
 

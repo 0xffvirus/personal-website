@@ -260,8 +260,7 @@ form.addEventListener("submit", (event) => {
 });
 document.querySelector("#year").textContent = new Date().getFullYear();
 
-// Replay on entry from either direction, rearming only after a full exit.
-// Content stays visible when animations are disabled or unsupported.
+// Animate once when an element enters the viewport. No permanently hidden content.
 
 let revealObserver;
 function configureMotion() {
@@ -273,30 +272,21 @@ function configureMotion() {
   }
   document.documentElement.classList.add("motion-ready");
   if (!("IntersectionObserver" in window)) return;
-  const revealed = new WeakSet();
-  const revealAnimations = new WeakMap();
   revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          revealed.delete(entry.target);
-          return;
-        }
-        if (entry.intersectionRatio < 0.1 || revealed.has(entry.target)) return;
-        revealed.add(entry.target);
-        revealAnimations.get(entry.target)?.cancel();
-        const offset = entry.boundingClientRect.top < entry.rootBounds.top ? -24 : 24;
-        const animation = entry.target.animate(
+        if (!entry.isIntersecting) return;
+        entry.target.animate(
           [
-            { opacity: 0.2, transform: `translateY(${offset}px)` },
+            { opacity: 0.2, transform: "translateY(24px)" },
             { opacity: 1, transform: "translateY(0)" },
           ],
           { duration: 650, easing: "cubic-bezier(.2,.8,.2,1)" },
         );
-        revealAnimations.set(entry.target, animation);
+        revealObserver.unobserve(entry.target);
       });
     },
-    { threshold: [0, 0.1], rootMargin: "0px 0px -32px 0px" },
+    { threshold: 0.1, rootMargin: "0px 0px -32px 0px" },
   );
   document
     .querySelectorAll(
