@@ -1,41 +1,49 @@
-# AI usage report
+# AI Usage Report
 
-## Tools used and use cases
+**Project:** Bahaa Najjar — Personal Portfolio (SWE363 Assignment 1)
+**Author:** Bahaa Mamdouh Najjar
 
-OpenAI Codex assisted with this implementation. It read the assignment, visual design, and website structure documents; generated HTML, CSS, JavaScript, and original SVG concept artwork; looked up the GitHub and LinkedIn profiles supplied by Bahaa; and drafted the README and technical documentation. Browser tools were used to inspect the rendered result and test interactions.
+## 1. Which AI Tool Was Used
 
-## Benefits and challenges
+I used **OpenAI Codex** as an assistant while building this portfolio assignment. Its contributions included code generation, debugging, design suggestions, browser checks, and documentation.
 
-AI assistance helped translate a detailed design specification into a consistent static website and connect accessibility requirements to working controls. Missing personal details were clarified with Bahaa rather than inventing an email address. Bahaa explicitly chose to add the final projects manually, so the two entries remain clearly labeled samples. The implementation uses the system English font fallback rather than assuming a new font license or adding an external dependency.
+## 2. What AI Helped With
 
-## Concepts illustrated by the implementation
+- Organizing the static website into HTML pages, a shared CSS stylesheet, a JavaScript file, image assets, and documentation.
+- Drafting the English and Arabic pages with semantic sections, project cards, accessible form labels, and right-to-left styling for Arabic.
+- Building the responsive layout with CSS variables, Grid, Flexbox, and breakpoints for mobile, tablet, and desktop widths.
+- Implementing contact-form validation, mobile navigation, expandable project notes, and animations with reduced-motion support.
+- Adapting my résumé information into descriptions of my five projects, professional experience, and skills, and drafting Arabic translations.
+- Fixing project-card alignment and converting large PNG screenshots into responsive WebP images for faster loading.
+- Drafting the README, technical documentation, and this report, and performing browser and code checks during development.
 
-- Semantic landmarks, heading order, labels, and descriptive image alternatives.
-- CSS custom properties, Grid/Flexbox, responsive breakpoints, and image aspect ratios.
-- A nonmodal navigation disclosure with keyboard support and exposed state.
-- Native details for project notes, progressively enhanced with fragment navigation.
-- Local form validation, input preservation, inline feedback, and accessible announcements.
-- The difference between validating input and actually delivering a message.
+## 3. Benefits
 
-These are concepts demonstrated by the code, not a claim that the student has personally mastered or reviewed them.
+- Reduced repetitive work when creating two language versions that share the same layout and interactions.
+- Helped keep spacing, typography, colors, and responsive behavior consistent through shared CSS rules.
+- Provided explanations and concrete solutions for the interface issues I noticed, such as misaligned project details when descriptions wrapped onto two lines.
+- Made image optimization straightforward: the five original screenshots totaled approximately 9.45 MiB, while the largest WebP variants together total approximately 253 KiB, a reduction of about 97.4%.
+- Helped incorporate accessibility details such as keyboard navigation, visible focus, validation feedback, and reduced-motion preferences.
 
-## Responsible use and modifications
+## 4. Challenges
 
-The AI output was adapted to the provided guides and Bahaa’s subsequent instructions. The implementation uses the supplied name, verified public profile links, and confirmed email address. It contains no invented project results or work experience, and it explicitly identifies sample content and the contact demo’s limitations. No repository or production deployment was created.
+- The initial card layout allowed longer descriptions to push the “Behind the project” row below the corresponding row in the neighboring card. I identified this issue and asked Codex to fix the alignment.
+- The original screenshots loaded slowly after deployment. I reported the problem and requested optimization; Codex generated smaller WebP variants and updated both pages to use responsive image selection.
+- Animation behavior needed refinement. I requested animations when scrolling back up, then decided to return to one-time reveal animations. I also requested smooth opening and closing for the mobile menu.
+- Documentation became outdated as the website changed. Earlier drafts referred to sample projects and placeholder images even after real content and screenshots were added.
+- Browser checks have limits. Codex checked layouts and interactions in its browser, but those checks do not establish compatibility with every browser or device.
 
-Before submission, Bahaa should inspect and modify the implementation, replace sample entries with genuine work, reproduce the behavior checks, and ensure he can explain the code. The assignment prohibits submitting unmodified AI output as one’s own work; this report makes the AI contribution explicit and does not falsely claim that the student review has already happened.
+## 5. My Decisions and Changes
 
-## Student reflection — complete after your review
+- I directed the portfolio’s content and presentation, including the use of my own project information, portrait, and an Arabic version.
+- I reviewed the visible behavior and raised specific issues with card alignment, scroll animations, mobile-menu transitions, and screenshot loading.
+- I chose to keep one-time scroll reveals and add smooth mobile-menu transitions. Codex implemented these decisions in the shared JavaScript.
+- For card alignment, the solution uses CSS subgrid to share row heights between neighboring cards. This allows descriptions to wrap while keeping the technology tags and disclosure rows aligned.
+- For screenshot performance, the solution combines WebP compression with `srcset` and `sizes`, allowing the browser to select an appropriate image width. Lazy loading defers images until they approach the viewport.
+- These revisions document my feedback and design decisions. The associated code changes and automated checks were carried out by Codex; they are not presented as code I independently wrote or tests I personally performed.
 
-- Which suggestions did you keep, modify, or reject, and why?
-- What did you learn while testing responsive layouts and validation?
-- What issue did you identify and fix yourself?
-- How does your final project content differ from these initial samples?
+## 6. Responsible Use of AI
 
-## Follow-up modifications
+I used Codex for substantial implementation and documentation assistance, while providing personal content, identifying issues, and deciding which changes to keep or undo. This report acknowledges that contribution and distinguishes my decisions from the code and checks performed by AI.
 
-At Bahaa’s request, Codex completed four revisions sequentially and displayed each result before starting the next: removed eyebrow labels; placed Bahaa’s supplied portrait in About without altering the image; added restrained motion with reduced-motion handling; and created a full Arabic page using the supplied Thmanyah Sans font. AI drafted the Arabic translations, localized form feedback, and shared RTL styling. Bahaa should review the wording and keep both languages synchronized when adding his projects.
-
-## Résumé content integration
-
-Codex extracted and visually reviewed the owner-provided résumé, including embedded project links, then replaced both sample entries with all five real projects. It drafted concise English copy and Arabic translations for the biography, education, experience, skills, and awards while preserving the source’s factual claims and dates. Neutral SVG image placeholders were created because the owner will supply actual project images later. The owner should review the Arabic wording and add genuine project screenshots; no images of working products or additional outcome metrics were invented.
+The final project uses my real project information and screenshots rather than the initial samples. The contact form clearly explains that it validates input locally and does not send a message. Before submission, I still need to confirm that the report accurately reflects my experience, review the final code and translations, and ensure I can explain the implementation. This report does not claim that I have personally reviewed every line or tested every browser.
